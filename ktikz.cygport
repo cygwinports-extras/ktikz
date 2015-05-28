@@ -1,0 +1,58 @@
+inherit kde4 qt4-qmake
+
+NAME="ktikz"
+VERSION=0.10
+RELEASE=1
+CATEGORY="Editors"
+SUMMARY="TikZ editor"
+DESCRIPTION="KtikZ is a small application helping you to create TikZ (from the
+LaTeX pgf package) diagrams for your publications."
+HOMEPAGE="http://www.hackenberger.at/blog/ktikz-editor-for-the-tikz-language"
+SRC_URI="http://www.hackenberger.at/ktikz/ktikz_${VERSION}.tar.gz"
+SRC_DIR="ktikz"
+PATCH_URI="0.10-default-editor.patch"
+
+PKG_NAMES="ktikz qtikz"
+# preview-latex, pgf
+ktikz_REQUIRES="kate poppler texlive-collection-latexextra texlive-collection-pictures"
+ktikz_CONTENTS="
+	etc/postinstall/
+	usr/bin/ktikz.exe
+	usr/lib/kde4/ktikzpart.dll
+	usr/share/applications/kde4/ktikz.desktop
+	usr/share/doc/
+	usr/share/icons/hicolor/*/apps/ktikz.*
+	usr/share/kde4/apps/ktikz/
+	usr/share/kde4/apps/ktikzpart/
+	usr/share/kde4/config.kcfg/ktikz.kcfg
+	usr/share/kde4/services/ktikzpart.desktop
+	usr/share/locale/
+	usr/share/man/man1/ktikz.1*
+	usr/share/mime/packages/ktikz.xml
+"
+qtikz_REQUIRES="xdg-utils poppler texlive-collection-latexextra texlive-collection-pictures"
+qtikz_CONTENTS="
+	etc/postinstall/
+	usr/bin/qtikz.exe
+	usr/share/applications/qtikz.desktop
+	usr/share/man/man1/qtikz.1*
+	usr/share/mime/packages/qtikz.xml
+	usr/share/qtikz/
+"
+
+src_compile() {
+	cd ${B}
+	kde4_compile
+
+	mkdir -p ${B}/qt-only
+	cd ${B}/qt-only
+	cygqmake4 ${S} PREFIX=/usr TEMPLATE_EDITOR_DEFAULT=xdg-open
+	cygmake
+}
+
+src_install() {
+	cd ${B}
+	kde4_install
+	cd ${B}/qt-only
+	qt4_qmake_install
+}

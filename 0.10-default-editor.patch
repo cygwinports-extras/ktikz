@@ -1,0 +1,31 @@
+--- origsrc/ktikz/defaults.pri	2010-10-13 15:41:48.000000000 -0500
++++ src/ktikz/defaults.pri	2015-05-28 12:34:22.196840100 -0500
+@@ -39,7 +39,7 @@ unix:!macx {
+ 	isEmpty(RESOURCESDIR) {
+ 		RESOURCESDIR = $${PREFIX}/share/qtikz
+ 	}
+-	isEmpty(TEMPLATE_EDITOR) {
++	isEmpty(TEMPLATE_EDITOR_DEFAULT) {
+ 		TEMPLATE_EDITOR_DEFAULT = kwrite
+ 	}
+ }
+@@ -47,7 +47,7 @@ macx { # untested
+ 	CONFIG += link_prl
+ 	BINDIR = /Applications
+ 	RESOURCESDIR = Contents/Resources
+-	isEmpty(TEMPLATE_EDITOR) {
++	isEmpty(TEMPLATE_EDITOR_DEFAULT) {
+ 		TEMPLATE_EDITOR_DEFAULT = kwrite
+ 	}
+ }
+@@ -62,7 +62,7 @@ win32 {
+ 	isEmpty(RESOURCESDIR) {
+ 		RESOURCESDIR = $${PREFIX}/data
+ 	}
+-	isEmpty(TEMPLATE_EDITOR) {
++	isEmpty(TEMPLATE_EDITOR_DEFAULT) {
+ 		TEMPLATE_EDITOR_DEFAULT = notepad
+ 	}
+ }
+Binary files origsrc/ktikz/doc/qtikz.qch and src/ktikz/doc/qtikz.qch differ
+Binary files origsrc/ktikz/doc/qtikz.qhc and src/ktikz/doc/qtikz.qhc differ
