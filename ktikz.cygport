@@ -14,7 +14,7 @@ PATCH_URI="0.10-default-editor.patch"
 
 PKG_NAMES="ktikz qtikz"
 # preview-latex, pgf
-ktikz_REQUIRES="kate poppler texlive-collection-latexextra texlive-collection-pictures"
+ktikz_REQUIRES="kate4-part poppler texlive-collection-latexextra texlive-collection-pictures"
 ktikz_CONTENTS="
 	etc/postinstall/
 	usr/bin/ktikz.exe
